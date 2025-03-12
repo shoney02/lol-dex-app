@@ -1,3 +1,5 @@
+import { RawItem } from "@/types/Item";
+
 const API_VERSION = "15.5.1";
 
 export const fetchChampionList = () => {};
@@ -13,8 +15,9 @@ export const fetchItemList = async () => {
     throw new Error("아이템 데이터를 불러오는 데 실패했습니다.");
   }
 
-  const data = await res.json();
-  return Object.entries(data.data).map(([id, item]: [string, any]) => ({
+  const data: { data: Record<string, RawItem> } = await res.json();
+
+  return Object.entries(data.data).map(([id, item]) => ({
     id,
     name: item.name,
     plaintext: item.plaintext || "설명이 없습니다.",
