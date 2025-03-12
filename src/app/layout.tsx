@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "LOL Dex App",
@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <header className="bg-gray-800 text-white py-4 fixed top-0 w-full z-10">
-          <nav className="container mx-auto flex justify-around">
+      <body className="bg-black text-white">
+        <header className="bg-gray-800 py-4">
+          <nav className="container mx-auto flex justify-around gap-10 text-lg font-semibold">
             <Link href={"/"} className="hover:text-blue-400">
               홈
             </Link>
@@ -34,7 +34,9 @@ export default function RootLayout({
             </Link>
           </nav>
         </header>
+
         <main className="container mx-auto mt-10">{children}</main>
+        
         <footer className="bg-gray-800 p-4 mt-8 fixed bottom-0 w-full">
           <div className="container mx-auto text-center text-white text-sm">
             [Your Product Name] is not endorsed by Riot Games and does not

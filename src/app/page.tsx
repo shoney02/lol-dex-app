@@ -7,7 +7,9 @@ import Logo3 from "@/public/assets/logo3.webp";
 const Home = () => {
   return (
     <section className="text-center">
-      <h1 className="text-3xl font-bold">리그 오브 레전드 정보 앱</h1>
+      <h1 className="text-3xl font-extrabold text-red-500">
+        리그 오브 레전드 정보 앱
+      </h1>
       <p className="mt-4 text-gray-500">
         Riot Games API를 활용하여 챔피언과 아이템 정보를 제공합니다.
       </p>
@@ -18,9 +20,9 @@ const Home = () => {
           className="flex flex-col justify-center items-center gap-5 text-amber-400"
         >
           <Image
-            className=""
-            width={100}
-            height={100}
+            className="rounded-lg shadow-lg"
+            width={300}
+            height={200}
             src={Logo1}
             alt="logo1"
           />
@@ -31,9 +33,9 @@ const Home = () => {
           className="flex flex-col justify-center items-center gap-5 text-amber-400"
         >
           <Image
-            className=""
-            width={100}
-            height={100}
+            className="rounded-lg shadow-lg"
+            width={300}
+            height={200}
             src={Logo2}
             alt="logo2"
           />
@@ -44,9 +46,9 @@ const Home = () => {
           className="flex flex-col justify-center items-center gap-5 text-amber-400"
         >
           <Image
-            className=""
-            width={100}
-            height={100}
+            className="rounded-lg shadow-lg"
+            width={300}
+            height={200}
             src={Logo3}
             alt="logo3"
           />
