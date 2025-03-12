@@ -17,9 +17,9 @@ export const fetchItemList = async () => {
   return Object.entries(data.data).map(([id, item]: [string, any]) => ({
     id,
     name: item.name,
-    plaintext: item.plaintext,
+    plaintext: item.plaintext || "설명이 없습니다.",
     image: {
-      full: item.image.full,
+      full: `https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/img/item/${item.image.full}`,
       sprite: item.image.sprite,
       group: item.image.group,
       x: item.image.x,
