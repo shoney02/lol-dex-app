@@ -16,7 +16,7 @@ export type Item = {
 
 export type RawItem = {
   name: string;
-  plaintext?: string;
+  plaintext: string;
   image: {
     full: string;
     sprite: string;
