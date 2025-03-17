@@ -33,4 +33,37 @@ export type ChampionDetail = Champion & {
     magic: number;
     difficulty: number;
   };
+  spells: Spell[];
+  passive: Passive;
+};
+
+// 챔피언 Q, W, E, R 스킬
+export type Spell = {
+  id: string;
+  name: string;
+  description: string;
+  image: {
+    full: string;
+    sprite: string;
+    group: string;
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  };
+};
+
+// 챔피언 패시브
+export type Passive = {
+  name: string;
+  description: string;
+  image: {
+    full: string;
+    sprite: string;
+    group: string;
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  };
 };

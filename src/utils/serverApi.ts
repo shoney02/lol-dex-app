@@ -2,6 +2,7 @@ import {
   Champion,
   ChampionDetail,
   RiotChampionResponse,
+  Spell,
 } from "@/types/Champion";
 import { RawItem } from "@/types/Item";
 
@@ -71,6 +72,33 @@ export const fetchChampionDetail = async (
       defense: champ.info.defense,
       magic: champ.info.magic,
       difficulty: champ.info.difficulty,
+    },
+    spells: champ.spells.map((spell: Spell) => ({
+      id: spell.id,
+      name: spell.name,
+      description: spell.description,
+      image: {
+        full: `https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/img/spell/${spell.image.full}`,
+        sprite: spell.image.sprite,
+        group: spell.image.group,
+        x: spell.image.x,
+        y: spell.image.y,
+        w: spell.image.w,
+        h: spell.image.h,
+      },
+    })),
+    passive: {
+      name: champ.passive.name,
+      description: champ.passive.description,
+      image: {
+        full: `https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/img/passive/${champ.passive.image.full}`,
+        sprite: champ.passive.image.sprite,
+        group: champ.passive.image.group,
+        x: champ.passive.image.x,
+        y: champ.passive.image.y,
+        w: champ.passive.image.w,
+        h: champ.passive.image.h,
+      },
     },
   };
 };

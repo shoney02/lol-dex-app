@@ -1,6 +1,7 @@
 import { fetchChampionDetail } from "@/utils/serverApi";
 import { Metadata } from "next";
 import Image from "next/image";
+import ChampionSkill from "@/components/ChampionSkill";
 
 type Props = {
   params: { id: string };
@@ -38,6 +39,7 @@ const ChampionDetailPage = async ({ params }: Props) => {
 
       <p className="text-gray-300 mt-4 text-lg">{champion.lore}</p>
 
+      {/* 스탯 정보 */}
       <div className="mt-6 text-left text-red-400 text-lg">
         <h3 className="font-bold">스탯</h3>
         <ul className="mt-2 ml-4 list-disc">
@@ -47,6 +49,9 @@ const ChampionDetailPage = async ({ params }: Props) => {
           <li>난이도: {champion.info.difficulty}</li>
         </ul>
       </div>
+
+      {/* 패시브 & 스킬 정보 */}
+      <ChampionSkill passive={champion.passive} spells={champion.spells} />
     </section>
   );
 };
