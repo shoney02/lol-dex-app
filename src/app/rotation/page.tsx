@@ -18,14 +18,22 @@ export default function RotationPage() {
         setError(null);
 
         const rotationData = await getChampionRotation();
-        const allChampions = await fetchChampionList();
-
-        const filteredChampions = allChampions.filter((champ) =>
-          rotationData.freeChampionIds.includes(Number(champ.id))
+        console.log(
+          "✅ rotationData.freeChampionIds =>",
+          rotationData.freeChampionIds
         );
 
+        const allChampions = await fetchChampionList();
+        console.log("✅ allChampions =>", allChampions);
+
+        // 챔피언 key 값을 숫자로 변환하여 비교
+        const filteredChampions = allChampions.filter((champ) =>
+          rotationData.freeChampionIds.includes(Number(champ.key))
+        );
+
+        console.log("✅ filteredChampions =>", filteredChampions);
         setRotationChampions(filteredChampions);
-      } catch (err) {
+      } catch (error) {
         setError("데이터를 불러오는 중 오류가 발생했습니다.");
       } finally {
         setLoading(false);

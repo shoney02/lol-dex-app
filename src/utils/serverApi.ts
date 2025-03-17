@@ -21,6 +21,7 @@ export const fetchChampionList = async (): Promise<Champion[]> => {
   const data: RiotChampionResponse = await res.json();
 
   return Object.values(data.data).map((champ) => ({
+    key: champ.key,
     id: champ.id,
     name: champ.name,
     title: champ.title,
@@ -76,7 +77,8 @@ export const fetchChampionDetail = async (
 
 export const fetchItemList = async () => {
   const res = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/ko_KR/item.json`
+    `https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/ko_KR/item.json`,
+    { cache: "force-cache" }
   );
 
   if (!res.ok) {

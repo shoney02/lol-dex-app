@@ -1,4 +1,5 @@
 export type Champion = {
+  key: string; // "266"
   id: string; //"Aatrox"
   name: string; // "아트록스"
   title: string; // "다르킨의 검"

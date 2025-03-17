@@ -20,7 +20,7 @@ export const generateMetadata = async ({
   };
 };
 
-export const ChampionDetailPage = async ({ params }: Props) => {
+const ChampionDetailPage = async ({ params }: Props) => {
   const champion = await fetchChampionDetail(params.id);
 
   return (
