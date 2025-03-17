@@ -6,10 +6,12 @@ import {
 import { RawItem } from "@/types/Item";
 
 const API_VERSION = "15.5.1";
+export const number = 86400; // ISR 적용 (하루마다 재검증)
 
 export const fetchChampionList = async (): Promise<Champion[]> => {
   const res = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/ko_KR/champion.json`
+    `https://ddragon.leagueoflegends.com/cdn/${API_VERSION}/data/ko_KR/champion.json`,
+    { next: { revalidate: number } }
   );
 
   if (!res.ok) {

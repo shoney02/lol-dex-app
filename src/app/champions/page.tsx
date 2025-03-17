@@ -2,8 +2,6 @@ import { fetchChampionList } from "@/utils/serverApi";
 import { Champion } from "@/types/Champion";
 import ChampionCard from "@/components/ChampionCard";
 
-export const revalidate = 86400; // ISR 적용 (하루마다 재검증)
-
 export default async function ChampionsPage() {
   const champions: Champion[] = await fetchChampionList();
 
