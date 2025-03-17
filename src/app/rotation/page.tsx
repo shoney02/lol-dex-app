@@ -1,51 +1,48 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { getChampionRotation } from "@/utils/riotApi";
 import { fetchChampionList } from "@/utils/serverApi";
 import { Champion } from "@/types/Champion";
 import ChampionCard from "@/components/ChampionCard";
+import { useQuery } from "@tanstack/react-query";
 
-export default function RotationPage() {
-  const [rotationChampions, setRotationChampions] = useState<Champion[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const RotationPage = () => {
+  const {
+    data: rotationData,
+    error: rotationError,
+    isLoading: isRotationLoading,
+  } = useQuery({
+    queryKey: ["championRotation"],
+    queryFn: getChampionRotation,
+  });
 
-  useEffect(() => {
-    async function fetchRotationData() {
-      try {
-        setLoading(true);
-        setError(null);
+  const {
+    data: allChampions,
+    error: championsError,
+    isLoading: isChampionsLoading,
+  } = useQuery({
+    queryKey: ["championList"],
+    queryFn: fetchChampionList,
+  });
 
-        const rotationData = await getChampionRotation();
-        console.log(
-          "✅ rotationData.freeChampionIds =>",
-          rotationData.freeChampionIds
-        );
-
-        const allChampions = await fetchChampionList();
-        console.log("✅ allChampions =>", allChampions);
-
-        // 챔피언 key 값을 숫자로 변환하여 비교
-        const filteredChampions = allChampions.filter((champ) =>
-          rotationData.freeChampionIds.includes(Number(champ.key))
-        );
-
-        console.log("✅ filteredChampions =>", filteredChampions);
-        setRotationChampions(filteredChampions);
-      } catch (error) {
-        setError("데이터를 불러오는 중 오류가 발생했습니다.");
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchRotationData();
-  }, []);
-
-  if (loading)
+  // 로딩 상태
+  if (isRotationLoading || isChampionsLoading) {
     return <p className="text-white text-center mt-10">로딩 중...</p>;
-  if (error) return <p className="text-red-500 text-center mt-10">{error}</p>;
+  }
+
+  // 에러 처리
+  if (rotationError || championsError) {
+    return (
+      <p className="text-red-500 text-center mt-10">
+        데이터를 불러오는 중 오류가 발생했습니다.
+      </p>
+    );
+  }
+
+  // `key` 값으로 로테이션 챔피언 찾기
+  const filteredChampions = (allChampions ?? []).filter((champ) =>
+    rotationData.freeChampionIds.includes(Number(champ.key))
+  );
 
   return (
     <section className="container mx-auto py-10 text-center">
@@ -55,10 +52,18 @@ export default function RotationPage() {
       </h1>
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-10">
-        {rotationChampions.map((champ) => (
-          <ChampionCard key={champ.id} {...champ} />
-        ))}
+        {filteredChampions.length > 0 ? (
+          filteredChampions.map(({ key, ...champ }) => (
+            <ChampionCard key={key} {...champ} />
+          ))
+        ) : (
+          <p className="text-gray-300 text-lg">
+            이번 주 무료 챔피언 데이터가 없습니다.
+          </p>
+        )}
       </div>
     </section>
   );
-}
+};
+
+export default RotationPage;
