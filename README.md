@@ -13,24 +13,26 @@ Riot API를 활용하여 최신 데이터를 불러옵니다.
 5. 반응형 UI - 다양한 디바이스에서 최적화된 화면을 제공합니다.
 
 ## 프로젝트 구조
+```
 my-riot-app/
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx      # 글로벌 레이아웃 설정
-│   │   ├── page.tsx        # 홈 페이지
-│   │   ├── champions/      # 챔피언 관련 페이지
-│   │   ├── items/          # 아이템 목록 페이지
-│   │   ├── rotation/       # 챔피언 로테이션 페이지
-│   │   ├── api/            # API Route Handlers
-│   ├── components/         # 재사용 가능한 컴포넌트
-│   ├── providers/          # Tanstack Query
-│   ├── types/              # TypeScript 타입 정의
-│   ├── utils/              # API 호출 유틸리티 함수
-│   └── public/             # 정적 파일 (이미지, 로고 등)
-├── .env.local               # 환경 변수 (Riot API Key)
-├── package.json             # 프로젝트 패키지 정보
-└── next.config.js           # Next.js 설정
-
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── champions/
+│   │   ├── items/
+│   │   ├── rotation/
+│   │   ├── api/
+|   |   ├── fonts/
+│   ├── components/
+│   ├── providers/
+│   ├── types/
+│   ├── utils/
+│   └── public/
+├── .env.local
+├── package.json
+└── next.config.js
+```
 ## 기술 스택
 <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white">
