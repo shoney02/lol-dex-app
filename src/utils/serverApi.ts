@@ -54,6 +54,7 @@ export const fetchChampionDetail = async (
   const champ = data.data[id];
 
   return {
+    key: champ.key,
     id: champ.id,
     name: champ.name,
     title: champ.title,
