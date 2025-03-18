@@ -3,7 +3,7 @@
 LOL Dex App은 리그 오브 레전드 챔피언, 아이템, 로테이션 정보를 제공하는 Next.js 기반 웹 애플리케이션입니다.
 Riot API를 활용하여 최신 데이터를 불러옵니다.
 
-배포 URL: lol-dex-app.vercel.app
+배포 URL: https://lol-dex-app.vercel.app
 
 ## 주요 기능
 1. 챔피언 목록 조회 - 모든 챔피언 정보를 확인할 수 있습니다.
